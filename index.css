@@ -10,7 +10,7 @@ body {
     margin: 0;
     position: relative;
     width: 50vh;
-    height: 70vh;
+    height: 74vh;
     border-color: black;
     border-style: solid;
     border-radius: 30px;
@@ -31,15 +31,15 @@ body {
 .back {
     /* Currently, the back of the card is hidden. 
     To display it, comment out the first line and uncomment the rest!!! */
-    display: none; 
-            /* margin: 0;
+   /* display: none; */
+            margin: 0;
             position: relative;
             width: 50vh;
             height: 74vh;
             border-color: black;
             border-style: solid;
             overflow: hidden; 
-            border-radius: 30px; */
+            border-radius: 30px;
 }
 
 .back img {
