@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0; 
+}
+
+.front {
+    margin: 0;
+    position: relative;
+    width: 50vh;
+    height: 70vh;
+    border-color: black;
+    border-style: solid;
+    border-radius: 30px;
+}
+
+.card-contents{
+
+}
+
+.suit {
+
+}
+
+.card-number {
+
+}
+
+.back {
+    /* Currently, the back of the card is hidden. 
+    To display it, comment out the first line and uncomment the rest!!! */
+    display: none; 
+            /* margin: 0;
+            position: relative;
+            width: 50vh;
+            height: 74vh;
+            border-color: black;
+            border-style: solid;
+            overflow: hidden; 
+            border-radius: 30px; */
+}
+
+.back img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
