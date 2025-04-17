@@ -15,27 +15,38 @@
     <head>
         <title>Warmup Exercise: Cards</title>
         <link rel="stylesheet" href="index.css">
-        <link rel="stylesheet" href="flip.css">
+        <link rel="stylesheet" href="css/flip.css">
 
     </head>
     <body>
         <main>
-            <!-- front - is the front of the card -->
-            <div class="front">
-                <!-- card-contents - contains the contents that are in the front of the card -->
-                <div class="card-contents">
-                    <!-- placeholder for team B to add the suits and card numbers -->
-                    <div class="suit"></div>
-                    <div class="card-number"></div>
+            <!-- card - contains card contents front and back-->
+            <div class="card">
+                <!-- front - is the front of the card -->
+                <div class="front">
+                    <!-- card-contents - contains the contents that are in the front of the card -->
+                    <div class="card-contents">
+                        <!-- placeholder for team B to add the suits and card numbers -->
+                        <div class="suit"></div>
+                        <div class="card-number"></div>
+                    </div>
                 </div>
-            </div>
-            <!-- back - is the front of the card -->
-            <div class="back">
-                <!-- card-contents - contains the contents that are in the back of the card -->
-                <div class="card-contents">
-                    <img src="assets/powell-back.png" alt="Card Back">
+                <!-- back - is the back of the card -->
+                <div class="back">
+                    <!-- card-contents - contains the contents that are in the back of the card -->
+                    <div class="card-contents">
+                        <img src="assets/powell-back.png" alt="Card Back">
+                    </div>
                 </div>
             </div>
         </main>
+        <!-- script to flip card when tapped / clicked -->
+        <script>
+            document.querySelectorAll('.card').forEach(card => {
+              card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+              });
+            });
+        </script>
     </body>
 </html>

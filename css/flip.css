@@ -1,0 +1,30 @@
+.card{
+    width: 50vh;
+    height: 74vh;
+    position: relative; /* anchor for .front and .back */
+    transform-style: preserve-3d; /* child elements in 3d space for aesthetic */
+    transition: transform 1.0s; /* transformation spans 1 second */
+    cursor: pointer; /* visual cue for clickable element */
+}
+
+.card.flipped{
+    transform: rotateY(180deg); /* flip along y axis animation */
+}
+
+.front, .back{
+    position: absolute; /* stack ontop of eachother within card */
+    width: 100%; /* fill .card */
+    height: 100%;
+    top: 0; /* align with .card */
+    left: 0; /* alignment */
+    backface-visibility: hidden; /* hide rear relative of .front/.back */
+}
+
+.back{
+    transform: rotateY(180deg); /* pre-flip 180 deg */
+    z-index: 1; /* layer below .front */
+}
+
+.front{
+    z-index: 2; /*layer on top of .back */
+}
