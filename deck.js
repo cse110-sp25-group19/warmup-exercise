@@ -5,7 +5,6 @@ class Card {
      * @param {string} suit The suit of the card.
      * @param {string} rank The rank of the card.
      */
-
     constructor(suit, rank) {
         this.suit = suit;
         this.rank = rank;
