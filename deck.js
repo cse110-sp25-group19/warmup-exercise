@@ -40,7 +40,13 @@ class Deck {
     constructor() {
         this.suits = ['♣', '♦', '♥', '♠'];
         this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-        this.deck = this.generateDeck();
+        const savedDeck = localStorage.getItem('savedDeck');
+        if (savedDeck) {
+            this.deck = JSON.parse(savedDeck);
+        } else {
+            this.deck = this.generateDeck();
+            this.saveDeck(); // save the initial deck
+        }
     }
 
     /**
@@ -58,6 +64,12 @@ class Deck {
         return deck;
     }
     /**
+     * Saves deck in local storage
+     */
+    saveDeck() {
+        localStorage.setItem('savedDeck', JSON.stringify(this.deck));
+    }
+    /**
      * Prints the suits and ranks of each card and displays the total number of cards in the deck.
      */
     printDeck() {
@@ -70,6 +82,15 @@ class Deck {
         console.log("Total # of Cards: ", n);
     }
     /**
+     * (LocalStorage Persistence issue #18)
+     * resets deck and generates new deck
+     */
+    resetDeck(){
+        this.deck = new Deck();
+        console.log("Resetted Deck")
+    }
+
+      /*
      * (Shuffle, Draw functions issue #14)
      * Shuffles deck and returns the newly shuffled deck
      * @returns popped deck
