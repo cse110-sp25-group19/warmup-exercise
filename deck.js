@@ -118,5 +118,25 @@ class Deck {
         }
         return this.deck.pop(0)
     }
+
+
+/**
+ * (Team C, Issue #11)
+ * Draws `n` cards from the top of the deck (front of the array).
+ * @param {number} n - Number of cards to draw.
+ * @returns {Card[]} An array of drawn Card objects.
+ */
+    drawCards(n){
+        const drawnCards = [];
+        for(let i = 0; i < n; i++){
+            if (this.deck.length === 0) {
+                break; 
+            }
+            const card = this.drawCard();
+            drawnCards.push(card);
+        }
+        this.saveDeck();
+        return drawnCards;
+    }
 }
 
