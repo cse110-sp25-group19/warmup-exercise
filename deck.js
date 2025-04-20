@@ -120,12 +120,12 @@ class Deck {
     }
 
 
-/**
- * (Team C, Issue #11)
- * Draws `n` cards from the top of the deck (front of the array).
- * @param {number} n - Number of cards to draw.
- * @returns {Card[]} An array of drawn Card objects.
- */
+    /**
+        * (Team C, Issue #11)
+        * Draws `n` cards from the top of the deck.
+        * @param {number} n - Number of cards to draw.
+        * @returns {Card[]} An array of drawn Card objects.
+    */
     drawCards(n){
         const drawnCards = [];
         for(let i = 0; i < n; i++){
@@ -137,6 +137,23 @@ class Deck {
         }
         this.saveDeck();
         return drawnCards;
+    }
+
+    /**
+        * (Team C, Issue #15)
+        * Shuffles the deck, draws `n` cards, logs the results, and updates the saved deck.
+        * 
+        * @param {number} n - The number of cards to draw from the deck.
+        * @returns {Card[]} An array containing the drawn Card objects.
+    */
+    dealCards(n){
+        this.shuffleDeck();
+        const hand = this.drawCards(n);
+        hand.forEach((card, i) => {
+            console.log('${card.rank} of ${card.suit} has been drawn.');
+        });
+        this.saveDeck();
+        return hand;
     }
 }
 
