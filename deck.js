@@ -86,8 +86,9 @@ class Deck {
      * resets deck and generates new deck
      */
     resetDeck(){
-        this.deck = new Deck();
-        console.log("Resetted Deck")
+        this.deck = this.generateDeck();
+        this.saveDeck();
+        return this.deck()
     }
 
       /*
@@ -112,12 +113,10 @@ class Deck {
      * @returns popped card(the card that was drawn)
      */
     drawCard(){
-        if(!this.deck){
-            console.log("Deck empty")
-            return
+        if(!this.deck || this.deck.length == 0){
+            return null
         }
         return this.deck.pop(0)
     }
 }
-
 
