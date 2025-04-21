@@ -1,9 +1,28 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh; 
-    margin: 0; 
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#welcome {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#welcome h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+#welcome p {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
 }
 
 .front {
@@ -14,36 +33,106 @@ body {
     border-color: black;
     border-style: solid;
     border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.card-contents{
-
+.card-contents {
+    text-align: center;
 }
 
 .suit {
-
+    font-size: 100px; 
+    font-weight: bold;
 }
 
 .card-number {
+    font-size: 100px; 
+    font-weight: bold;
+}
 
+/* Black suits (spades and clubs) */
+.suit.black, .card-number.black {
+    color: black;
+}
+
+/* Red suits (hearts and diamonds) */
+.suit.red, .card-number.red {
+    color: red;
 }
 
 .back {
-    /* Currently, the back of the card is hidden. 
-    To display it, comment out the first line and uncomment the rest!!! */
-   /* display: none; */
-            margin: 0;
-            position: relative;
-            width: 50vh;
-            height: 74vh;
-            border-color: black;
-            border-style: solid;
-            overflow: hidden; 
-            border-radius: 30px;
+    margin: 0;
+    position: relative;
+    width: 50vh;
+    height: 74vh;
+    border-color: black;
+    border-style: solid;
+    overflow: hidden;
+    border-radius: 30px;
 }
 
 .back img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #003f7f;
+}
+
+/* Ensure the card and buttons don't overlap */
+.card {
+    margin-bottom: 0;
+}
+
+.card-buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Message styling at the top */
+#output {
+    margin-top: 10px; 
+    background-color: white;
+    padding: 10px 20px;
+    border: 1px solid #003f7f;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    width: 90%;
 }

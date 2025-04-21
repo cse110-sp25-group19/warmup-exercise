@@ -1,54 +1,113 @@
-<!-- Assignment overview:
-1. Card Deck and Playing Card Web Components complete with animation of flip and/or shuffle 
-    (HTML, CSS, and very light JS)
-
-2. Dealing with the deck, complete with an ability to pull the cards one 
-    or multiple at a time and state management of the deck (more JS + some simple web APIs) 
-
-3. A simple game, either Solitaire or Black Jack Game, against an algorithmic dealer.  
-    No multiplayer effort here or network work allowed.  
-    The dealer may have a brain-dead, random, and correct mode for fun.  
-    If you do BlackJack you need state for money to be tracked. (the most JS) -->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Warmup Exercise: Cards</title>
+        <title>Warmup Exercise</title>
         <link rel="stylesheet" href="index.css">
         <link rel="stylesheet" href="css/flip.css">
-
     </head>
     <body>
         <main>
-            <!-- card - contains card contents front and back-->
-            <div class="card">
-                <!-- front - is the front of the card -->
-                <div class="front">
-                    <!-- card-contents - contains the contents that are in the front of the card -->
-                    <div class="card-contents">
-                        <!-- placeholder for team B to add the suits and card numbers -->
-                        <div class="suit"></div>
-                        <div class="card-number"></div>
+            <div id="welcome">
+                <h1>Welcome to the Powell Rangers Card Game!</h1>
+                <p>To begin, click the buttons to shuffle, draw, reset, or print the deck!</p>
+            </div>
+            <div class="card-buttons-container">
+                <!-- card - contains card contents front and back-->
+                <div class="card">
+                    <!-- front - is the front of the card -->
+                    <div class="front">
+                        <!-- card-contents - contains the contents that are in the front of the card -->
+                        <div class="card-contents">
+                            <!-- placeholder for team B to add the suits and card numbers -->
+                            <div class="suit"></div>
+                            <div class="card-number"></div>
+                        </div>
+                    </div>
+                    <!-- back - is the back of the card -->
+                    <div class="back">
+                        <!-- card-contents - contains the contents that are in the back of the card -->
+                        <div class="card-contents">
+                            <img src="assets/powell-back.png" alt="Card Back">
+                        </div>
                     </div>
                 </div>
-                <!-- back - is the back of the card -->
-                <div class="back">
-                    <!-- card-contents - contains the contents that are in the back of the card -->
-                    <div class="card-contents">
-                        <img src="assets/powell-back.png" alt="Card Back">
-                    </div>
+                <!-- buttons - contains all the functional buttons -->
+                <div class="buttons">
+                    <button id="shuffle-button">Shuffle Deck</button>
+                    <button id="draw-button">Draw Card</button>
+                    <button id="reset-button">Reset Deck</button>
+                    <button id="print-button">Print Deck</button>
                 </div>
             </div>
+            <div id="output" style="display: none;"></div>
         </main>
         <!-- script to flip card when tapped / clicked -->
         <script>
             document.querySelectorAll('.card').forEach(card => {
-              card.addEventListener('click', () => {
-                card.classList.toggle('flipped');
-              });
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
             });
         </script>
         <script src="deck.js"></script>
+        <script>
+            // Create a new deck instance
+            const deck = new Deck();
+            deck.shuffleDeck();
+            // Make buttons functional
+            const shuffleDeckBtn = document.getElementById('shuffle-button');
+            const drawCardBtn = document.getElementById('draw-button');
+            const resetDeckBtn = document.getElementById('reset-button');
+            const printDeckBtn = document.getElementById('print-button');
+            const outputDiv = document.getElementById('output');
 
+            // Shuffle Deck Button
+            shuffleDeckBtn.addEventListener('click', () => {
+                deck.shuffleDeck();
+                outputDiv.textContent = 'Deck shuffled!';
+                outputDiv.style.display = 'block';
+            });
+
+            // Draw Card Button
+            drawCardBtn.addEventListener('click', () => {
+                const card = deck.drawCard();
+                if (card) {
+                    const suitElement = document.querySelector('.suit');
+                    const rankElement = document.querySelector('.card-number');
+                    suitElement.textContent = card.suit;
+                    rankElement.textContent = card.rank;
+
+                    // Change color based on suit
+                    if (card.suit === '♥' || card.suit === '♦') {
+                        suitElement.className = 'suit red';
+                        rankElement.className = 'card-number red';
+                    } else {
+                        suitElement.className = 'suit black';
+                        rankElement.className = 'card-number black';
+                    }
+                    outputDiv.textContent = `You drew: ${card.rank} ${card.suit}`;
+                } else {
+                    outputDiv.textContent = 'No more cards in the deck!';
+                }
+                outputDiv.style.display = 'block';
+            });
+
+            // Reset Deck Button
+            resetDeckBtn.addEventListener('click', () => {
+                deck.resetDeck();
+                outputDiv.textContent = 'Deck reset!';
+                document.querySelector('.suit').textContent = '';
+                document.querySelector('.card-number').textContent = '';
+                outputDiv.style.display = 'block';
+            });
+
+            // Print Deck Button
+            printDeckBtn.addEventListener('click', () => {
+                console.clear();
+                deck.printDeck();
+                outputDiv.textContent = 'Deck printed to console!';
+                outputDiv.style.display = 'block';
+            });
+        </script>
     </body>
 </html>
