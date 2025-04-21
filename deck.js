@@ -150,10 +150,29 @@ class Deck {
         this.shuffleDeck();
         const hand = this.drawCards(n);
         hand.forEach((card, i) => {
-            console.log('${card.rank} of ${card.suit} has been drawn.');
+            console.log(`${card.rank} of ${card.suit} has been drawn.`);
         });
         this.saveDeck();
         return hand;
     }
 }
 
+
+
+/**
+ * (Team C, Issue #19)
+ * Looks for an element in HTML document that has the resetBtn id
+ * and calls the resetDeck() function on click.
+*/
+const deck = new Deck();
+
+// reset button listener
+document.addEventListener("DOMContentLoaded", () => {
+    const resetBtn = document.getElementById("resetBtn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            deck.resetDeck();
+            console.log("Deck has been reset");
+        });
+    }
+});
