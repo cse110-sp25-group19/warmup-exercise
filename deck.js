@@ -176,3 +176,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+/**
+ * (Team C, Issue #23)
+ * Looks for button with id 'deal-button' and input box 'deal-input' to deal {n} amount of cards 
+ * based on user input.
+*/
+
+// deal button listener
+document.addEventListener("DOMContentLoaded", () => {
+    const dealbutton = document.getElementById("deal-button");
+    const dealinput = document.getElementById("deal-input")
+
+    if(dealbutton && dealinput){
+        dealbutton.addEventListener("click", () => {
+            const count = parseInt(dealinput.value);
+            if(deck.deck.length >= count){
+                dealCards(count);
+                console.log(`Successfully dealt ${count} cards`);
+            }else{
+                console.log("Not enough cards left in deck to deal");
+            }
+        });
+    }
+});
